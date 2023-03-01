@@ -1,17 +1,56 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:EventsList.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="900"
+		xmlns:local="clr-namespace:EventsList.Models"
+		xmlns:vm="using:EventsList.ViewModels"
         x:Class="EventsList.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+		Icon="/Assets/SibSUTIS.ico"
         Title="EventsList">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<Window.Resources>
+		<vm:BitmapAssetValueConverter x:Key="EventCategoryIcon"/>
+	</Window.Resources>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Window.Styles>
+		<StyleInclude Source="/Assets/Styles.axaml"></StyleInclude>
+	</Window.Styles>
+	
+	<Window.DataTemplates>
+		<DataTemplate DataType="{x:Type local:EventCategory}">
+					<Grid Classes="EventCategory"
+						  ShowGridLines="False" ColumnDefinitions="1*, 2*" RowDefinitions="*">
+						<Image Grid.Column="0" 
+							   Source="{Binding IconPath, Converter={StaticResource EventCategoryIcon}}"/>
+						<TextBlock Grid.Column="1" 
+								   Text="{Binding CategoryName}"/>
+					</Grid>
+		</DataTemplate>
+	</Window.DataTemplates>
+
+	<TabControl>
+		<TabItem>
+			<TabItem.Header>
+				<local:EventCategory CategoryName="Для детей" IconPath="Assets/Images/Header/Children.png"/>
+			</TabItem.Header>
+		</TabItem>
+		
+		<TabItem>
+			<TabItem.Header>
+				<local:EventCategory CategoryName="Спорт" IconPath="Assets/Images/Header/Sport.png"/>
+			</TabItem.Header>
+		</TabItem>
+		<!--
+		<local:EventCategory CategoryName="Спорт" IconPath="Assets/Images/Header/Foxyn.png"/>
+		<local:EventCategory CategoryName="Культура" IconPath="Assets/Images/Header/Foxyn.png"/>		
+		<local:EventCategory CategoryName="Экскурсии" IconPath="Assets/Images/Header/Foxyn.png"/>
+		<local:EventCategory CategoryName="Образ жизни" IconPath="Assets/Images/Header/Foxyn.png"/>
+		<local:EventCategory CategoryName="Вечеринки" IconPath="Assets/Images/Header/Foxyn.png"/>		
+		<local:EventCategory CategoryName="Образование" IconPath="Assets/Images/Header/Foxyn.png"/>
+		<local:EventCategory CategoryName="Онлайн" IconPath="Assets/Images/Header/Foxyn.png"/>
+		<local:EventCategory CategoryName="Шоу" IconPath="Assets/Images/Header/Foxyn.png"/>
+		-->
+	</TabControl>
 
 </Window>
