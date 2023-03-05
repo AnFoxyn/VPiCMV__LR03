@@ -3,12 +3,8 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia;
 using System;
-using System.Text;
-using System.Linq;
 using System.Reflection;
 using System.Globalization;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace EventsList.ViewModels
 {

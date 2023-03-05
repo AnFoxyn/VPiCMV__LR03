@@ -1,0 +1,62 @@
+﻿<Events>
+	<Event>
+		<Image data="/Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Culture">
+			<CategoryItem data="Culture"/>
+		</Category>
+	</Event>
+	<Event>
+		<Image data="Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Children">
+			<CategoryItem data="Children"/>
+		</Category>
+	</Event>
+	<Event>
+		<Image data="Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Children">
+			<CategoryItem data="Children"/>
+		</Category>
+	</Event>
+	<Event>
+		<Image data="Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Culture">
+			<CategoryItem data="Culture"/>
+		</Category>
+	</Event>
+	<Event>
+		<Image data="Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Culture">
+			<CategoryItem data="Culture"/>
+		</Category>
+	</Event>
+	<Event>
+		<Image data="Assets/Images/Event/Foxyn.png"/>
+		<Header data="Тест"/>
+		<Date data="05.03.23"/>
+		<Description data="Тестовое описание"/>
+		<Price data="1000"/>
+		<Category get="Culture">
+			<CategoryItem data="Culture"/>
+		</Category>
+	</Event>
+</Events>

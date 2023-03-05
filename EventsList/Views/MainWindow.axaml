@@ -2,55 +2,61 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="900"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="750"
 		xmlns:local="clr-namespace:EventsList.Models"
 		xmlns:vm="using:EventsList.ViewModels"
         x:Class="EventsList.Views.MainWindow"
 		Icon="/Assets/SibSUTIS.ico"
         Title="EventsList">
-
+	
 	<Window.Resources>
-		<vm:BitmapAssetValueConverter x:Key="EventCategoryIcon"/>
+		<vm:BitmapAssetValueConverter x:Key="EventImages"/>
 	</Window.Resources>
 
 	<Window.Styles>
-		<StyleInclude Source="/Assets/Styles.axaml"></StyleInclude>
+		<StyleInclude Source="/Assets/Styles.axaml"/>
 	</Window.Styles>
-	
-	<Window.DataTemplates>
-		<DataTemplate DataType="{x:Type local:EventCategory}">
-					<Grid Classes="EventCategory"
-						  ShowGridLines="False" ColumnDefinitions="1*, 2*" RowDefinitions="*">
-						<Image Grid.Column="0" 
-							   Source="{Binding IconPath, Converter={StaticResource EventCategoryIcon}}"/>
-						<TextBlock Grid.Column="1" 
-								   Text="{Binding CategoryName}"/>
-					</Grid>
-		</DataTemplate>
-	</Window.DataTemplates>
 
-	<TabControl>
-		<TabItem>
-			<TabItem.Header>
-				<local:EventCategory CategoryName="Для детей" IconPath="Assets/Images/Header/Children.png"/>
-			</TabItem.Header>
-		</TabItem>
-		
-		<TabItem>
-			<TabItem.Header>
-				<local:EventCategory CategoryName="Спорт" IconPath="Assets/Images/Header/Sport.png"/>
-			</TabItem.Header>
-		</TabItem>
-		<!--
-		<local:EventCategory CategoryName="Спорт" IconPath="Assets/Images/Header/Foxyn.png"/>
-		<local:EventCategory CategoryName="Культура" IconPath="Assets/Images/Header/Foxyn.png"/>		
-		<local:EventCategory CategoryName="Экскурсии" IconPath="Assets/Images/Header/Foxyn.png"/>
-		<local:EventCategory CategoryName="Образ жизни" IconPath="Assets/Images/Header/Foxyn.png"/>
-		<local:EventCategory CategoryName="Вечеринки" IconPath="Assets/Images/Header/Foxyn.png"/>		
-		<local:EventCategory CategoryName="Образование" IconPath="Assets/Images/Header/Foxyn.png"/>
-		<local:EventCategory CategoryName="Онлайн" IconPath="Assets/Images/Header/Foxyn.png"/>
-		<local:EventCategory CategoryName="Шоу" IconPath="Assets/Images/Header/Foxyn.png"/>
-		-->
-	</TabControl>
+	<ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<TabControl Items="{Binding	CityEventCategories}">
+			<TabControl.ItemTemplate>
+				<DataTemplate>
+					<Grid Classes="EventCategory" ShowGridLines="False" ColumnDefinitions="1*, 2*" RowDefinitions="*">
+						<Image Grid.Column="0" Source="{Binding CategoryIcon, Converter={StaticResource EventImages}}"/>
+						<TextBlock Grid.Column="1" Name="Category" Text="{Binding CategoryName}"/>
+					</Grid>
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+			<TabControl.ContentTemplate>
+				<DataTemplate>
+					<ItemsControl Items="{Binding Events}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate DataType="{x:Type local:CityEvent}">
+								<Grid Classes="Event" RowDefinitions="3*, 1*" ColumnDefinitions="*">
+									<Image Grid.Row="0" Source="{Binding Image, Converter={StaticResource EventImages}}"/>
+									<StackPanel Grid.Row="1">
+										<TextBlock Classes="Header" Text="{Binding Header}"/>
+										<TextBlock Classes="Date" Text="{Binding Date}"/>
+										<TextBlock Classes="Description" Text="{Binding Description}"/>
+										<TextBlock Classes="Price" Text="{Binding Price}"/>
+									</StackPanel>
+									<Border Grid.Row="0"/>
+									<Border Grid.Row="1"/>
+								</Grid>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel> 
+					</ItemsControl>
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+		</TabControl>
+	</ScrollViewer>
+
 
 </Window>
+
+

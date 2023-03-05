@@ -1,27 +1,34 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-namespace EventsList.Models
+﻿namespace EventsList.Models
 {
-    public class EventCategory : INotifyPropertyChanged
+    public class CityEvent
     {
-        private string __CategoryName;
 
-        public EventCategory() { }
-        public string IconPath { get; set; }
-        public string CategoryName { 
-            get => __CategoryName;
-            set 
-            {
-                __CategoryName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(__CategoryName)));
-            }             
+
+        public string Image { get; }
+        public string Header { get; }
+        public string Date { get; }
+        public string Description { get; }
+        public string Price { get; }
+
+        private string[] Categories;
+        private string GetCategory;
+
+        public bool CheckCategories(string checkCategory)
+        {
+            foreach (var categories in Categories)
+                if (categories == checkCategory) return true;
+            return GetCategory == checkCategory;
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public CityEvent(string image, string header, string date, string description, string price, string[] categories, string getCategory)
+        {
+            Image = image;
+            Header = header;
+            Date = date;
+            Description = description;
+            Price = price;
+            Categories = categories;
+            GetCategory = getCategory;
+        }
     }
 }
